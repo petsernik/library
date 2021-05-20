@@ -1,13 +1,14 @@
 #include <iostream>
-#include <cstdlib> // rand(), srand()
-#include <ctime> //  time()
+#include <cstdlib> // rand, srand
+#include <ctime> //  time
+#include <algorithm> // swap
 
 void init_rand() {
-	srand((unsigned int)time(0));
+	std::srand((unsigned int)time(0));
 }
 
 long long randint(long long x, long long y) {
-	return rand() % (y - x + 1) + x;
+	return std::rand() % (y - x + 1) + x;
 }
 
 // power
@@ -66,29 +67,19 @@ bool miller_rabin(long long n)
 	return false;
 }
 
-template <typename t>
-void swap(t& x, t& y)
-{
-	t z = y;
-	y = x;
-	x = z;
-}
-
 // greatest common divisor
 // complexity: O(log(n)), n = min(x,y)
-template <typename t>
-t gcd(t x, t y)
+long long gcd(long long x, long long y)
 {
 	while (y)
 	{
 		x %= y;
-		swap(x, y);
+		std::swap(x, y);
 	}
 	return x;
 }
 
-
 int main()
 {
-	std::cout << gcd(18,243);
+	std::cout << gcd(18,(long long)243);
 }
