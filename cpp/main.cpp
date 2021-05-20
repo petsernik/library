@@ -56,12 +56,15 @@ bool miller_rabin(long long n)
 	}
 	auto a = randint(2, n - 2);
 	auto x = powmod(a, u, n);
-	for (int i = 0; i < t; ++i)
+	if (x == n-1 || x == 1)
+		return true;
+	for (int i = 0; i < t - 1; ++i)
 	{
-		auto y = (x * x) % n;
-		if (y == 1)
-			return x == 1 || x == n - 1;
-		x = y;
+		x = (x * x) % n;
+		if (x == n-1)
+			return true;
+		if (x == 1)
+			return false;
 	}
 	return false;
 }

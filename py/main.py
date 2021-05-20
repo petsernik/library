@@ -18,11 +18,14 @@ def miller_rabin(n):
         t += 1
     a = randint(2, n - 2)
     x = pow(a, u, n)
-    for _ in range(t):
-        y = (x * x) % n
-        if y == 1:
-            return x == 1 or x == n - 1
-        x = y
+    if x == n - 1 or x == 1:
+        return True
+    for _ in range(t - 1):
+        x = (x * x) % n
+        if x == n - 1:
+            return True
+        if x == 1:
+            return False
     return False
 
 
