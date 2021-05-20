@@ -28,8 +28,7 @@ def miller_rabin(n):
 
 # greatest common divisor
 # complexity: O(log(n)), n=min(x,y)
-def gcd(X, Y):
-    x, y = X, Y
+def gcd(x, y):
     while y:
         x %= y
         x, y = y, x

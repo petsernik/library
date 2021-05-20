@@ -13,28 +13,27 @@ long long randint(long long x, long long y) {
 
 // power
 // complexity: O(log(n))
-long long Pow(long long a, long long n)
-{
-	if (n == 0)
-		return 1;
-	if (n == 1)
-		return a;
-	long long x = Pow(a, n >> 1);
-	long long y = n & 1 ? a : 1;
-	return x * x * y;
+long long Pow(long long base, long long exp) {
+	long long result = 1;
+	while (exp > 0) {
+		if (exp & 1) result *= base;
+		base *= base;
+		exp >>= 1;
+	}
+	return result;
 }
 
 // power with module
 // complexity: O(log(n))
-long long powmod(long long a, long long n, long long m)
-{
-	if (n == 0)
-		return 1 % m;
-	if (n == 1)
-		return a % m;
-	long long x = powmod(a, n >> 1, m);
-	long long y = n & 1 ? a % m : 1;
-	return (((x * x) % m) * y) % m;
+long long powmod(long long base, long long exp, long long modulus) {
+	base %= modulus;
+	long long result = 1;
+	while (exp > 0) {
+		if (exp & 1) result = (result * base) % modulus;
+		base = (base * base) % modulus;
+		exp >>= 1;
+	}
+	return result;
 }
 
 // checking for prime
