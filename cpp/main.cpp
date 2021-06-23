@@ -81,6 +81,24 @@ long long gcd(long long x, long long y)
 	return x;
 }
 
+// for CF rounds
+
+// #include <iostream>
+// #include <set>
+// #include <map>
+// #include <string>
+// #include <vector>
+// #include <algorithm>
+// using namespace std;
+
+// comporator
+struct comp {
+	bool operator() (const string& lhs, const string& rhs) const
+	{
+		return lhs.length() < rhs.length() || (lhs.length() == rhs.length() && lhs < rhs);
+	}
+};
+
 int main()
 {
 	std::cout << gcd(18,(long long)243);
