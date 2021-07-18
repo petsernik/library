@@ -86,18 +86,24 @@ long long gcd(long long x, long long y)
 // #include <iostream>
 // #include <set>
 // #include <map>
+// #include <utility>
 // #include <string>
 // #include <vector>
 // #include <algorithm>
 // using namespace std;
 
 // comporator
-struct comp {
-	bool operator() (const string& lhs, const string& rhs) const
-	{
-		return lhs.length() < rhs.length() || (lhs.length() == rhs.length() && lhs < rhs);
-	}
-};
+// struct comp {
+// 	bool operator() (const string& lhs, const string& rhs) const
+// 	{
+// 		return lhs.length() < rhs.length() || (lhs.length() == rhs.length() && lhs < rhs);
+// 	}
+// };
+
+bool comp(int& lhs, int& rhs)
+{
+	return lhs > rhs;
+}
 
 int main()
 {
