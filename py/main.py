@@ -1,4 +1,5 @@
 from random import randint
+import time
 
 
 # checking for prime
@@ -9,7 +10,7 @@ def miller_rabin(n):
         return False
     if n <= 3:
         return True
-    if not n & 1:
+    if not n & 1:  # n % 2 == 0
         return False
     u = n - 1
     deg = 0
@@ -49,14 +50,14 @@ class Operation:
 def operate(x, y, op):
     if op == Operation.Add:
         return x + y
-    elif op == Operation.Gcd:
-        return gcd(x, y)
-    elif op == Operation.Lcd:
-        return lcd(x, y)
     elif op == Operation.Min:
         return min(x, y)
     elif op == Operation.Max:
         return max(x, y)
+    # elif op == Operation.Gcd:
+    #     return gcd(x, y)
+    # elif op == Operation.Lcd:
+    #     return lcd(x, y)
 
 
 MAXN = int(1e6)
@@ -119,16 +120,27 @@ def update(v, tl, tr, pos, new_val, op=Operation.Add):
 #         t[v] = operate(t[v << 1], t[(v << 1) + 1], op)
 
 
-if __name__ == '__main__':
-    a = [randint(0, 10), randint(0, 10), randint(0, 10), randint(0, 10)]
-    print(a)
+def time_of_work():
+    t0 = time.time()
+    # code
+    t1 = time.time()
+    print(t1 - t0)
+
+
+def test_st():
+    a = [randint(0, 10) for i in range(1000)]
+    # print(a)
     n = len(a)
     v, tl, tr = 1, 0, n - 1
     op = Operation.Lcd
     build(a, v, tl, tr, op)
-    print('1-2:', get(v, tl, tr, 1, 2, op))
+    # print('1-2:', get(v, tl, tr, 1, 2, op))
     pos, value = randint(0, n - 1), randint(-100, 100)
     a[pos] = value
     update(v, tl, tr, pos, value, op)
-    print(a)
-    print('0-3:', get(v, tl, tr, 0, 3, op))
+    # print(a)
+    # print('0-3:', get(v, tl, tr, 0, 3, op))
+
+
+if __name__ == '__main__':
+    time_of_work()

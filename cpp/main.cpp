@@ -6,7 +6,6 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-const int MAXN = (int)1e6;
 
 //cstdlib,time
 void init_rand() {
@@ -77,7 +76,8 @@ bool miller_rabin(long long n)
 
 // greatest common divisor
 // complexity: O(log(n)), n = min(x,y)
-int gcd(int x, int y)
+template <typename T = int>
+T gcd(T x, T y)
 {
 	while (y)
 	{
@@ -87,9 +87,10 @@ int gcd(int x, int y)
 	return x;
 }
 
-int lcd(int x, int y)
+template <typename T = int>
+T lcd(T x, T y)
 {
-	return x||y ? x / gcd(x,y) * y : 0;
+	return x || y ? x / gcd(x, y) * y : 0;
 }
 
 // comporator
@@ -106,29 +107,28 @@ bool comp(int& lhs, int& rhs)
 	return lhs > rhs;
 }
 
-enum Operation
-{
-	Add, Gcd, Lcd, Min, Max
-};
-
-int operate(int x, int y, Operation op) {
+typedef int seg_t;
+enum Operation { Add, Mul, Min, Max, Gcd, Lcd };
+seg_t operate(seg_t x, seg_t y, Operation op) {
 	switch (op)
 	{
 	case Add: return x + y;
-	case Gcd: return gcd(x, y);
-	case Lcd: return lcd(x, y);
+	case Mul: return x * y;
 	case Min: return min(x, y);
 	case Max: return max(x, y);
+	//case Gcd: return gcd(x, y);
+	//case Lcd: return lcd(x, y);
 	default: return 0;
 	}
 }
 
+const int MAXN = (int)1e6;
+seg_t t[4 * MAXN];
 //Segment tree
 //Build: O(n)
 //Get value, update: O(log(n))
-int t[4 * MAXN];
 // main call: v=1, tl=0, tr=n-1
-void build(vector<int> a, int v, int tl, int tr, Operation op = Add) {
+void build(vector<seg_t> &a, int v, int tl, int tr, Operation op = Add) {
 	if (tl == tr)
 		t[v] = a[tl];
 	else {
@@ -141,21 +141,21 @@ void build(vector<int> a, int v, int tl, int tr, Operation op = Add) {
 
 // main call: v=1, tl=0, tr=n-1
 // l<=r
-int get(int v, int tl, int tr, int l, int r, Operation op = Add) {
+seg_t get(int v, int tl, int tr, int l, int r, Operation op = Add) {
 	if (l == tl && r == tr)
 		return t[v];
 	int tm = (tl + tr) >> 1;
-	if (l > tm) 
+	if (l > tm)
 		return get((v << 1) + 1, tm + 1, tr, max(l, tm + 1), r, op);
-	if (tm + 1 > r) 
+	if (tm + 1 > r)
 		return get(v << 1, tl, tm, l, min(r, tm), op);
-	int x = get(v << 1, tl, tm, l, min(r, tm), op),
+	seg_t x = get(v << 1, tl, tm, l, min(r, tm), op),
 		y = get((v << 1) + 1, tm + 1, tr, max(l, tm + 1), r, op);
 	return operate(x, y, op);
 }
 
 // main call: v=1, tl=0, tr=n-1
-void update(int v, int tl, int tr, int pos, int new_val, Operation op = Add) {
+void update(int v, int tl, int tr, int pos, seg_t new_val, Operation op = Add) {
 	while (tl != tr)
 	{
 		int tm = (tl + tr) >> 1;
@@ -170,7 +170,8 @@ void update(int v, int tl, int tr, int pos, int new_val, Operation op = Add) {
 	}
 }
 
-//void update(int v, int tl, int tr, int pos, int new_val, Operation op = Add) {
+// main call: v=1, tl=0, tr=n-1
+//void update(int v, int tl, int tr, int pos, seg_t new_val, Operation op = Add) {
 //	if (tl == tr)
 //		t[v] = new_val;
 //	else {
@@ -183,8 +184,15 @@ void update(int v, int tl, int tr, int pos, int new_val, Operation op = Add) {
 //	}
 //}
 
-int main()
-{
+#include <ctime>
+void time_of_work() {
+	clock_t t0 = clock();
+	// code
+	clock_t t1 = clock();
+	cout << "time: " << (double)(t1 - t0) / CLOCKS_PER_SEC << endl;
+}
+
+void test_st() {
 	int n = 4;
 	int v = 1, tl = 0, tr = n - 1;
 	vector<int> a{ 1,6,4,2 };
@@ -193,4 +201,9 @@ int main()
 	cout << get(v, tl, tr, 1, 3, op) << '\n';
 	update(v, tl, tr, 3, 12, op);
 	cout << get(v, tl, tr, 0, 3, op) << '\n';
+}
+
+int main()
+{
+	cout << lcd(12,14);
 }

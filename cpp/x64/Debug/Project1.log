@@ -1,2 +1,203 @@
 ﻿  main.cpp
-  Project1.vcxproj -> C:\Files\Github\library\cpp\x64\Debug\Project1.exe
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2672: "get": не найдена соответствующая перегруженная функция
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2783: int get(int,int,int,int,int,Operation): не удается составить аргумент шаблон для "T"
+C:\Files\Github\library\cpp\main.cpp(145): message : см. объявление "get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const _Ty &&std::get(const std::array<_Ty,_Size> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(930): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: _Ty &&std::get(std::array<_Ty,_Size> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(927): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const _Ty &std::get(const std::array<_Ty,_Size> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(924): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: _Ty &std::get(std::array<_Ty,_Size> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(921): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const _Ty &&std::get(const std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(869): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: _Ty &&std::get(std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(863): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const _Ty &std::get(const std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(857): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: _Ty &std::get(std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(851): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const tuple_element<_Index,std::tuple<_Types...>>::type &&std::get(const std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(835): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: tuple_element<_Index,std::tuple<_Types...>>::type &&std::get(std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(828): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const tuple_element<_Index,std::tuple<_Types...>>::type &std::get(const std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(822): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: tuple_element<_Index,std::tuple<_Types...>>::type &std::get(std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(816): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const _Ty2 &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(606): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const _Ty1 &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(600): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(593): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: _Ty2 &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(588): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: _Ty1 &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(583): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(576): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const _Ty2 &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(570): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const _Ty1 &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(564): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: const tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(557): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: _Ty2 &std::get(std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(552): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: _Ty1 &std::get(std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(547): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): error C2780: tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &std::get(std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(540): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(150,13): message : "get": объявление функции должно быть доступно, так как ни один из аргументов не зависит от параметра шаблона
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2672: "get": не найдена соответствующая перегруженная функция
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2783: int get(int,int,int,int,int,Operation): не удается составить аргумент шаблон для "T"
+C:\Files\Github\library\cpp\main.cpp(145): message : см. объявление "get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const _Ty &&std::get(const std::array<_Ty,_Size> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(930): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: _Ty &&std::get(std::array<_Ty,_Size> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(927): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const _Ty &std::get(const std::array<_Ty,_Size> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(924): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: _Ty &std::get(std::array<_Ty,_Size> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(921): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const _Ty &&std::get(const std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(869): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: _Ty &&std::get(std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(863): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const _Ty &std::get(const std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(857): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: _Ty &std::get(std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(851): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const tuple_element<_Index,std::tuple<_Types...>>::type &&std::get(const std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(835): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: tuple_element<_Index,std::tuple<_Types...>>::type &&std::get(std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(828): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const tuple_element<_Index,std::tuple<_Types...>>::type &std::get(const std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(822): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: tuple_element<_Index,std::tuple<_Types...>>::type &std::get(std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(816): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const _Ty2 &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(606): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const _Ty1 &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(600): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(593): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: _Ty2 &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(588): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: _Ty1 &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(583): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(576): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const _Ty2 &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(570): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const _Ty1 &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(564): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: const tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(557): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: _Ty2 &std::get(std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(552): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: _Ty1 &std::get(std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(547): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): error C2780: tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &std::get(std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(540): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(152,13): message : "get": объявление функции должно быть доступно, так как ни один из аргументов не зависит от параметра шаблона
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2672: "get": не найдена соответствующая перегруженная функция
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2783: int get(int,int,int,int,int,Operation): не удается составить аргумент шаблон для "T"
+C:\Files\Github\library\cpp\main.cpp(145): message : см. объявление "get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const _Ty &&std::get(const std::array<_Ty,_Size> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(930): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: _Ty &&std::get(std::array<_Ty,_Size> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(927): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const _Ty &std::get(const std::array<_Ty,_Size> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(924): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: _Ty &std::get(std::array<_Ty,_Size> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(921): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const _Ty &&std::get(const std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(869): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: _Ty &&std::get(std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(863): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const _Ty &std::get(const std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(857): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: _Ty &std::get(std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(851): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const tuple_element<_Index,std::tuple<_Types...>>::type &&std::get(const std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(835): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: tuple_element<_Index,std::tuple<_Types...>>::type &&std::get(std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(828): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const tuple_element<_Index,std::tuple<_Types...>>::type &std::get(const std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(822): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: tuple_element<_Index,std::tuple<_Types...>>::type &std::get(std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(816): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const _Ty2 &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(606): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const _Ty1 &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(600): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(593): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: _Ty2 &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(588): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: _Ty1 &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(583): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(576): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const _Ty2 &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(570): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const _Ty1 &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(564): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: const tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(557): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: _Ty2 &std::get(std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(552): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: _Ty1 &std::get(std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(547): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): error C2780: tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &std::get(std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(540): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(153,13): message : "get": объявление функции должно быть доступно, так как ни один из аргументов не зависит от параметра шаблона
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2672: "get": не найдена соответствующая перегруженная функция
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2783: int get(int,int,int,int,int,Operation): не удается составить аргумент шаблон для "T"
+C:\Files\Github\library\cpp\main.cpp(145): message : см. объявление "get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const _Ty &&std::get(const std::array<_Ty,_Size> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(930): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: _Ty &&std::get(std::array<_Ty,_Size> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(927): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const _Ty &std::get(const std::array<_Ty,_Size> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(924): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: _Ty &std::get(std::array<_Ty,_Size> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(921): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const _Ty &&std::get(const std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(869): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: _Ty &&std::get(std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(863): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const _Ty &std::get(const std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(857): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: _Ty &std::get(std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(851): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const tuple_element<_Index,std::tuple<_Types...>>::type &&std::get(const std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(835): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: tuple_element<_Index,std::tuple<_Types...>>::type &&std::get(std::tuple<_Types...> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(828): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const tuple_element<_Index,std::tuple<_Types...>>::type &std::get(const std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(822): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: tuple_element<_Index,std::tuple<_Types...>>::type &std::get(std::tuple<_Types...> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\tuple(816): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const _Ty2 &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(606): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const _Ty1 &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(600): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &&std::get(const std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(593): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: _Ty2 &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(588): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: _Ty1 &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(583): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &&std::get(std::pair<_Ty1,_Ty2> &&) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(576): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const _Ty2 &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(570): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const _Ty1 &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(564): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(154,10): error C2780: const tuple_element<_Idx,std::pair<_Ty1,_Ty2>>::type &std::get(const std::pair<_Ty1,_Ty2> &) noexcept: требует аргументов: 1, имеется: 6
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037\include\utility(557): message : см. объявление "std::get"
+C:\Files\Github\library\cpp\main.cpp(156,1): fatal error C1003: число ошибок превышает 100; остановка компиляции
