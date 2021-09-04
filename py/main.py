@@ -10,11 +10,11 @@ def miller_rabin(n):
         return False
     if n <= 3:
         return True
-    if not n & 1:  # n % 2 == 0
+    if n & 1 == 0:
         return False
     u = n - 1
     deg = 0
-    while not u & 1:  # u % 2 == 0
+    while u & 1 == 0:
         u >>= 1
         deg += 1
     a = randint(2, n - 2)
@@ -60,8 +60,8 @@ def operate(x, y, op):
     #     return lcd(x, y)
 
 
-MAXN = int(1e6)
-t = [0 for _ in range(4 * MAXN)]
+MaxN = int(1e6)
+t = [0 for _ in range(4 * MaxN)]
 
 
 # Segment tree
@@ -72,74 +72,92 @@ def build(a, v, tl, tr, op=Operation.Add):
     if tl == tr:
         t[v] = a[tl]
     else:
-        tm = (tl + tr) >> 1
-        build(a, v << 1, tl, tm, op)
-        build(a, (v << 1) + 1, tm + 1, tr, op)
-        t[v] = operate(t[v << 1], t[(v << 1) + 1], op)
+        tm = (tl + tr) // 2
+        build(a, 2 * v, tl, tm, op)
+        build(a, 2 * v + 1, tm + 1, tr, op)
+        t[v] = operate(t[2 * v], t[2 * v + 1], op)
 
 
 # main call: v=1, tl=0, tr=n-1
-def get(v, tl, tr, l, r, op=Operation.Add):
-    if l == tl and r == tr:
+def get(v, tl, tr, left, right, op=Operation.Add):
+    if left == tl and right == tr:
         return t[v]
-    tm = (tl + tr) >> 1
-    if l > tm:
-        return get((v << 1) + 1, tm + 1, tr, max(l, tm + 1), r, op)
-    if tm + 1 > r:
-        return get(v << 1, tl, tm, l, min(r, tm), op)
-    x = get(v << 1, tl, tm, l, min(r, tm), op)
-    y = get((v << 1) + 1, tm + 1, tr, max(l, tm + 1), r, op)
+    tm = (tl + tr) // 2
+    if left > tm:
+        return get(2 * v + 1, tm + 1, tr, max(left, tm + 1), right, op)
+    if tm + 1 > right:
+        return get(2 * v, tl, tm, left, min(right, tm), op)
+    x = get(2 * v, tl, tm, left, min(right, tm), op)
+    y = get(2 * v + 1, tm + 1, tr, max(left, tm + 1), right, op)
     return operate(x, y, op)
 
 
 # main call: v=1, tl=0, tr=n-1
 def update(v, tl, tr, pos, new_val, op=Operation.Add):
     while tl != tr:
-        tm = (tl + tr) >> 1
+        tm = (tl + tr) // 2
         if pos <= tm:
-            v <<= 1
+            v *= 2
             tr = tm
         else:
-            v = (v << 1) + 1
+            v = 2 * v + 1
             tl = tm + 1
     t[v] = new_val
     while v > 1:
-        v >>= 1
-        t[v] = operate(t[v << 1], t[(v << 1) + 1], op)
+        v //= 2
+        t[v] = operate(t[2 * v], t[2 * v + 1], op)
 
 
 # def update(v, tl, tr, pos, new_val, op=Operation.Add):
 #     if tl == tr:
 #         t[v] = new_val
 #     else:
-#         tm = (tl + tr) >> 1
+#         tm = (tl + tr) // 2
 #         if pos <= tm:
-#             update(v << 1, tl, tm, pos, new_val, op)
+#             update(2 * v, tl, tm, pos, new_val, op)
 #         else:
-#             update((v << 1) + 1, tm + 1, tr, pos, new_val, op)
-#         t[v] = operate(t[v << 1], t[(v << 1) + 1], op)
+#             update(2 * v + 1, tm + 1, tr, pos, new_val, op)
+#         t[v] = operate(t[2 * v], t[2 * v + 1], op)
+
+
+def quicksort(a, n, x):
+    if n - a >= 2:
+        i = partition(a, n, x)
+        quicksort(a, i, x)
+        quicksort(i + 1, n, x)
+
+
+def partition(a, n, x):
+    # n >= 2
+    p = randint(a, n - 1)
+    y = x[p]
+    x[p], x[n - 1] = x[n - 1], x[p]
+    i = a
+    j = n - 1
+    while i < j:
+        if x[i] < y:
+            i += 1
+        elif x[j] >= y:
+            j -= 1
+        else:
+            x[i], x[j] = x[j], x[i]
+    if x[i] < y:
+        i += 1
+    x[i], x[n - 1] = x[n - 1], x[i]
+    return i
 
 
 def time_of_work():
-    t0 = time.time()
-    # code
-    t1 = time.time()
-    print(t1 - t0)
-
-
-def test_st():
-    a = [randint(0, 10) for i in range(1000)]
-    # print(a)
-    n = len(a)
-    v, tl, tr = 1, 0, n - 1
-    op = Operation.Lcd
-    build(a, v, tl, tr, op)
-    # print('1-2:', get(v, tl, tr, 1, 2, op))
-    pos, value = randint(0, n - 1), randint(-100, 100)
-    a[pos] = value
-    update(v, tl, tr, pos, value, op)
-    # print(a)
-    # print('0-3:', get(v, tl, tr, 0, 3, op))
+    for deg in range(2):
+        n = pow(10, deg)
+        x = [randint(0, 10) for _ in range(n)]
+        t0 = time.time()
+        print(x)
+        quicksort(0, len(x), x)
+        print(x)
+        # sorted(x)
+        t1 = time.time()
+        print(f'n = 10^{deg}, ms={int(1000 * (t1 - t0))}')
 
 
 if __name__ == '__main__':
