@@ -120,20 +120,19 @@ def update(v, tl, tr, pos, new_val, op=Operation.Add):
 #         t[v] = operate(t[2 * v], t[2 * v + 1], op)
 
 
-def quicksort(a, n, x):
-    if n - a >= 2:
-        i = partition(a, n, x)
+def quicksort(a, b, x):
+    if b - a >= 2:
+        i = partition(a, b, x)
         quicksort(a, i, x)
-        quicksort(i + 1, n, x)
+        quicksort(i + 1, b, x)
 
 
-def partition(a, n, x):
-    # n >= 2
-    p = randint(a, n - 1)
+def partition(a, b, x):
+    p = randint(a, b - 1)
     y = x[p]
-    x[p], x[n - 1] = x[n - 1], x[p]
+    x[p], x[b - 1] = x[b - 1], x[p]
     i = a
-    j = n - 1
+    j = b - 1
     while i < j:
         if x[i] < y:
             i += 1
@@ -143,7 +142,7 @@ def partition(a, n, x):
             x[i], x[j] = x[j], x[i]
     if x[i] < y:
         i += 1
-    x[i], x[n - 1] = x[n - 1], x[i]
+    x[i], x[b - 1] = x[b - 1], x[i]
     return i
 
 
