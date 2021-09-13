@@ -7,6 +7,26 @@
 #include <algorithm>
 using namespace std;
 
+// precedence and associativity
+// upper then earlier
+// 
+// ::
+// .  ->   []   ()  a++ a-- typeid const_cast dynamic_cast reinterpret_cast static_cast
+// sizeof ++a  --a  ~a  !a  -a  +a  &a  *a  new  delete  (cast)a
+// .*  ->*
+// *  /  %
+// + -
+// << >>
+// < > <= >=
+// == !=
+// &
+// ^
+// |
+// &&
+// ||
+// a?b:c  =  *= /= %= += -= <<= >>= &= |= ^= throw 
+// ,
+
 //cstdlib,time
 void init_rand() {
 	srand((unsigned int)time(0));
@@ -261,23 +281,3 @@ int main()
 {
 	cout << lcd(12, 14);
 }
-
-// precedence and associativity
-// upper then earlier
-// 
-// ::
-// .  ->   []   ()  a++ a-- typeid const_cast dynamic_cast reinterpret_cast static_cast
-// sizeof ++a  --a  ~a  !a  -a  +a  &a  *a  new  delete  (cast)a
-// .*  ->*
-// *  /  %
-// + -
-// << >>
-// < > <= >=
-// == !=
-// &
-// ^
-// |
-// &&
-// ||
-// ?:  =  *= /= %= += -= <<= >>= &= |= ^= throw 
-// ,
