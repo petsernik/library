@@ -2,6 +2,17 @@ from random import randint
 import time
 
 
+def log(func):
+    def log_func(*args, **kwargs):
+        t0 = time.time()
+        func(*args, **kwargs)
+        t1 = time.time()
+        print(f'time: {int(1000 * (t1 - t0))}\n')
+        return func(*args, **kwargs)
+
+    return log_func
+
+
 # checking for prime
 # p(fp)=1/4
 # complexity: O(log(n))
@@ -78,8 +89,8 @@ def build(a, v, tl, tr, op=Operation.Add):
         t[v] = operate(t[2 * v], t[2 * v + 1], op)
 
 
-# main call: v=1, tl=0, tr=n-1
 def get(v, tl, tr, left, right, op=Operation.Add):
+    """main call: v=1, tl=0, tr=n-1"""
     if left == tl and right == tr:
         return t[v]
     tm = (tl + tr) // 2
@@ -92,8 +103,8 @@ def get(v, tl, tr, left, right, op=Operation.Add):
     return operate(x, y, op)
 
 
-# main call: v=1, tl=0, tr=n-1
 def update(v, tl, tr, pos, new_val, op=Operation.Add):
+    """main call: v=1, tl=0, tr=n-1"""
     while tl != tr:
         tm = (tl + tr) // 2
         if pos <= tm:
@@ -109,6 +120,7 @@ def update(v, tl, tr, pos, new_val, op=Operation.Add):
 
 
 # def update(v, tl, tr, pos, new_val, op=Operation.Add):
+#     """main call: v=1, tl=0, tr=n-1"""
 #     if tl == tr:
 #         t[v] = new_val
 #     else:
@@ -140,24 +152,38 @@ def partition(a, b, x):
             j -= 1
         else:
             x[i], x[j] = x[j], x[i]
-    if x[i] < y:
-        i += 1
     x[i], x[b - 1] = x[b - 1], x[i]
     return i
 
 
-def time_of_work():
-    for deg in range(2):
-        n = pow(10, deg)
-        x = [randint(0, 10) for _ in range(n)]
-        t0 = time.time()
-        print(x)
-        quicksort(0, len(x), x)
-        print(x)
-        # sorted(x)
-        t1 = time.time()
-        print(f'n = 10^{deg}, ms={int(1000 * (t1 - t0))}')
+def ans_gcs(a, b):
+    ans = [[0 for _ in range(len(b) + 1)] for _ in range(len(a) + 1)]
+    for i in range(1, len(a) + 1):
+        for j in range(1, len(b) + 1):
+            if a[i - 1] == b[j - 1]:
+                ans[i][j] = ans[i - 1][j - 1] + 1
+            else:
+                ans[i][j] = max(ans[i - 1][j], ans[i][j - 1])
+    return ans
+
+
+def gcs(a, b):
+    n, m = len(a), len(b)
+    ans = ans_gcs(a, b)
+    x = ans[n][m]
+    s = ''
+    while x:
+        if a[n - 1] == b[m - 1]:
+            s += a[n - 1]
+            n -= 1
+            m -= 1
+            x -= 1
+        elif ans[n - 1][m] == x:
+            n -= 1
+        else:
+            m -= 1
+    return s[::-1]
 
 
 if __name__ == '__main__':
-    time_of_work()
+    quicksort(0, pow(10, 3), [randint(0, pow(10, 3)) for _ in range(pow(10, 3))])

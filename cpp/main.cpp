@@ -40,10 +40,6 @@ int randint(int x, int y) {
 	return rand() % (y - x + 1) + x;
 }
 
-int randint(int x, int y) {
-	return (1LL * rand()) * (1LL * rand()) % (y - x + 1) + x;
-}
-
 // power
 // complexity: O(log(n))
 long long Pow(long long base, long long exp) {
@@ -78,11 +74,11 @@ bool miller_rabin(long long n)
 		return false;
 	if (n <= 3)
 		return true;
-	if (n & 1 == 0)
+	if (n % 2 == 0)
 		return false;
 	long long u = n - 1;
 	int t = 0;
-	while (u & 1 == 0)
+	while (u % 2 == 0)
 	{
 		u /= 2;
 		++t;
@@ -246,14 +242,37 @@ int partition(int a, int b, vector<T> x) {
 			--j;
 		else
 			swap(x[i], x[j]);
-			
 	}
-	if (x[i] < y)
-		++i;
 	swap(x[i], x[b - 1]);
 	return i;
 }
 
+vector<vector<int>> ans_gcs(string a, string b) {
+	vector<vector<int>> ans(a.size() + 1, vector<int>(b.size() + 1));
+	for (int i = 1; i <= a.size(); ++i)
+		for (int j = 1; j <= b.size(); ++j)
+			if (a[i - 1] == b[j - 1])
+				ans[i][j] = ans[i - 1][j - 1] + 1;
+			else
+				ans[i][j] = max(ans[i - 1][j], ans[i][j - 1]);
+	return ans;
+}
+
+string gcs(string a, string b) {
+	int n = a.size(), m = b.size();
+	vector<vector<int>> ans = ans_gcs(a, b);
+	int x = ans[n][m];
+	string s = "";
+	while (x) {
+		if (a[n - 1] == b[m - 1]) {
+			s = a[n - 1] + s;
+			--n; --m; --x;
+		}
+		else if (ans[n - 1][m] == x) --n;
+		else --m;
+	}
+	return s;
+}
 
 #include <ctime>
 void time_of_work() {
@@ -279,5 +298,5 @@ void test_st() {
 
 int main()
 {
-	cout << lcd(12, 14);
+	cout << gcs("abd", "bcd");
 }
