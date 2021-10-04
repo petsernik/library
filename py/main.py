@@ -186,4 +186,4 @@ def gcs(a, b):
 
 
 if __name__ == '__main__':
-    quicksort(0, pow(10, 3), [randint(0, pow(10, 3)) for _ in range(pow(10, 3))])
+    print(gcs("abd", "bcd"))

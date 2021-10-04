@@ -47,7 +47,7 @@ long long Pow(long long base, long long exp) {
 	while (exp) {
 		if (exp & 1) result *= base;
 		base *= base;
-		exp /= 2;
+		exp >>= 1;
 	}
 	return result;
 }
@@ -60,7 +60,7 @@ long long powmod(long long base, long long exp, long long modulus) {
 	while (exp) {
 		if (exp & 1) result = (result * base) % modulus;
 		base = (base * base) % modulus;
-		exp /= 2;
+		exp >>= 1;
 	}
 	return result;
 }
@@ -144,16 +144,17 @@ bool comp(int& lhs, int& rhs)
 }
 
 typedef int seg_t;
-enum Operation { Add, Mul, Min, Max, Gcd, Lcd };
+enum class Operation { Add, Mul, Min, Max, Gcd, Lcd };
 seg_t operate(seg_t x, seg_t y, Operation op) {
+
 	switch (op)
 	{
-	case Add: return x + y;
-	case Mul: return x * y;
-	case Min: return min(x, y);
-	case Max: return max(x, y);
-		//case Gcd: return gcd(x, y);
-		//case Lcd: return lcd(x, y);
+	case Operation::Add: return x + y;
+	case Operation::Mul: return x * y;
+	case Operation::Min: return min(x, y);
+	case Operation::Max: return max(x, y);
+		//case Operation::Gcd: return gcd(x, y);
+		//case Operation::Lcd: return lcd(x, y);
 	default: return 0;
 	}
 }
@@ -164,7 +165,7 @@ seg_t t[4 * MAXN];
 //Build: O(n)
 //Get value, update: O(log(n))
 // main call: v=1, tl=0, tr=n-1
-void build(vector<seg_t>& a, int v, int tl, int tr, Operation op = Add) {
+void build(vector<seg_t>& a, int v, int tl, int tr, Operation op = Operation::Add) {
 	if (tl == tr)
 		t[v] = a[tl];
 	else {
@@ -177,7 +178,7 @@ void build(vector<seg_t>& a, int v, int tl, int tr, Operation op = Add) {
 
 // main call: v=1, tl=0, tr=n-1
 // l<=r
-seg_t get(int v, int tl, int tr, int l, int r, Operation op = Add) {
+seg_t get(int v, int tl, int tr, int l, int r, Operation op = Operation::Add) {
 	if (l == tl && r == tr)
 		return t[v];
 	int tm = (tl + tr) / 2;
@@ -191,7 +192,7 @@ seg_t get(int v, int tl, int tr, int l, int r, Operation op = Add) {
 }
 
 // main call: v=1, tl=0, tr=n-1
-void update(int v, int tl, int tr, int pos, seg_t new_val, Operation op = Add) {
+void update(int v, int tl, int tr, int pos, seg_t new_val, Operation op = Operation::Add) {
 	while (tl != tr)
 	{
 		int tm = (tl + tr) / 2;
@@ -247,20 +248,44 @@ int partition(int a, int b, vector<T> x) {
 	return i;
 }
 
-vector<vector<int>> ans_gcs(string a, string b) {
-	vector<vector<int>> ans(a.size() + 1, vector<int>(b.size() + 1));
-	for (int i = 1; i <= a.size(); ++i)
-		for (int j = 1; j <= b.size(); ++j)
+template <typename T = int>
+void Merge(vector<T>& a, vector<T>& b, vector<T>& v) {
+	auto it1 = a.begin();
+	auto it2 = b.begin();
+	auto it = v.begin();
+	while (it!=v.end()) {
+		if (it2 == b.end() || (it1 != a.end() && *it1 <= *it2))
+			*(it++) = *(it1++);
+		else
+			*(it++) = *(it2++);
+	}
+}
+
+template <typename T = int>
+void merge_sort(vector<T>& v)
+{
+	if (v.size() <= 1) return;
+	vector<T> a(v.begin(), v.begin() + v.size()/2);
+	vector<T> b(v.begin() + v.size() / 2, v.end());
+	merge_sort(a);
+	merge_sort(b);
+	Merge(a, b, v);
+}
+
+void ans_gcs(string a, string b, vector<vector<int>>& ans) {
+	ans = vector<vector<int>>(a.size() + 1, vector<int>(b.size() + 1));
+	for (size_t i = 1; i <= a.size(); ++i)
+		for (size_t j = 1; j <= b.size(); ++j)
 			if (a[i - 1] == b[j - 1])
 				ans[i][j] = ans[i - 1][j - 1] + 1;
 			else
 				ans[i][j] = max(ans[i - 1][j], ans[i][j - 1]);
-	return ans;
 }
 
 string gcs(string a, string b) {
-	int n = a.size(), m = b.size();
-	vector<vector<int>> ans = ans_gcs(a, b);
+	size_t n = a.size(), m = b.size();
+	vector<vector<int>> ans; 
+	ans_gcs(a, b, ans);
 	int x = ans[n][m];
 	string s = "";
 	while (x) {
@@ -281,7 +306,7 @@ void time_of_work() {
 		clock_t t0 = clock();
 		// code
 		clock_t t1 = clock();
-		cout << "time: " << (double)(t1 - t0) / CLOCKS_PER_SEC << endl;
+		cout << "time: " << (t1 - t0) / CLOCKS_PER_SEC << endl;
 	}
 }
 
@@ -289,7 +314,7 @@ void test_st() {
 	int n = 4;
 	int v = 1, tl = 0, tr = n - 1;
 	vector<int> a{ 1,6,4,2 };
-	Operation op = Max;
+	Operation op = Operation::Max;
 	build(a, v, tl, tr, op);
 	cout << get(v, tl, tr, 1, 3, op) << '\n';
 	update(v, tl, tr, 3, 12, op);
@@ -298,5 +323,9 @@ void test_st() {
 
 int main()
 {
-	cout << gcs("abd", "bcd");
+	cout << gcs("abd", "bcd") << endl;
+	vector<int> v{ 1,5,4,3,7,10,1 };
+	merge_sort(v);
+	for (auto e : v)
+		cout << e << " ";
 }
