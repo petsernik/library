@@ -222,7 +222,7 @@ void update(int v, int tl, int tr, int pos, seg_t new_val, Operation op = Operat
 //}
 
 template <typename T = int>
-void quicksort(int a, int b, vector<T> x) {
+void quicksort(int a, int b, const vector<T>& x) {
 	if (b - a >= 2) {
 		int i = partition(a, b, x);
 		quicksort(a, i, x);
@@ -231,7 +231,7 @@ void quicksort(int a, int b, vector<T> x) {
 }
 
 template <typename T = int>
-int partition(int a, int b, vector<T> x) {
+int partition(int a, int b, const vector<T>& x) {
 	int p = randint(a, b - 1);
 	T y = x[p];
 	swap(x[p], x[b - 1]);
@@ -272,20 +272,20 @@ void merge_sort(vector<T>& v)
 	Merge(a, b, v);
 }
 
-void ans_gcs(string a, string b, vector<vector<int>>& ans) {
-	ans = vector<vector<int>>(a.size() + 1, vector<int>(b.size() + 1));
-	for (size_t i = 1; i <= a.size(); ++i)
-		for (size_t j = 1; j <= b.size(); ++j)
+vector<vector<int>> ans_gcs(const string& a, const string& b) {
+	vector<vector<int>> ans(a.size() + 1, vector<int>(b.size() + 1));
+	for (int i = 1; i <= a.size(); ++i)
+		for (int j = 1; j <= b.size(); ++j)
 			if (a[i - 1] == b[j - 1])
 				ans[i][j] = ans[i - 1][j - 1] + 1;
 			else
 				ans[i][j] = max(ans[i - 1][j], ans[i][j - 1]);
+	return ans;
 }
 
-string gcs(string a, string b) {
-	size_t n = a.size(), m = b.size();
-	vector<vector<int>> ans; 
-	ans_gcs(a, b, ans);
+string gcs(const string& a, const string& b) {
+	int n = a.size(), m = b.size();
+	vector<vector<int>> ans = ans_gcs(a, b);
 	int x = ans[n][m];
 	string s = "";
 	while (x) {
