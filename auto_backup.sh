@@ -1,4 +1,4 @@
 git add *
-git commit -m "test auto backup"
+git commit -am "auto backup"
 git pull --rebase
 git push
