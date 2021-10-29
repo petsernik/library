@@ -1,7 +1,7 @@
 # sites
-https://e-maxx.ru/algo/
-https://stackoverflow.com/
-https://users.math-cs.spbu.ru/~okhotin/teaching.html
+https://e-maxx.ru/algo/  
+https://stackoverflow.com/  
+https://users.math-cs.spbu.ru/~okhotin/teaching.html  
 
 # library
 Miller-Rabin test: https://en.wikipedia.org/wiki/Miller-Rabin_primality_test  
