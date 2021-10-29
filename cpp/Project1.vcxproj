@@ -141,6 +141,17 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header.h" />
+    <ClInclude Include="LCS.h" />
+    <ClInclude Include="MergeSort.h" />
+    <ClInclude Include="SegmentTree.h" />
+    <ClInclude Include="Std.h" />
+    <ClInclude Include="TchOperations.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Alphabet.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -2,6 +2,7 @@ from random import randint
 import time
 
 
+# @log
 def log(func):
     def log_func(*args, **kwargs):
         t0 = time.time()
@@ -12,6 +13,26 @@ def log(func):
 
     return log_func
 
+def prefix_function(_s):
+    p = [0 for _ in range(len(_s))]
+    for i in range(1, len(_s)):
+        j = p[i - 1]
+        while j > 0 and _s[j] != _s[i]:
+            j = p[j - 1]
+        if _s[j] == _s[i]:
+            p[i] = j + 1
+    return p
+
+
+def count_in(_t, _s):
+    cnt = 0
+    w = _t + '#' + _s
+    tl = len(_t)
+    p = prefix_function(w)
+    for i in range(tl, len(w)):
+        if p[i] == tl:
+            cnt += 1
+    return cnt
 
 # checking for prime
 # p(fp)=1/4
