@@ -26,7 +26,7 @@ def prefix_function(_s):
 
 def count_in(_t, _s):
     cnt = 0
-    w = _t + '#' + _s
+    w = _t + "#" + _s
     tl = len(_t)
     p = prefix_function(w)
     for i in range(tl, len(w)):
@@ -177,7 +177,7 @@ def partition(a, b, x):
     return i
 
 
-def ans_gcs(a, b):
+def ans_lcs(a, b):
     ans = [[0 for _ in range(len(b) + 1)] for _ in range(len(a) + 1)]
     for i in range(1, len(a) + 1):
         for j in range(1, len(b) + 1):
@@ -188,7 +188,7 @@ def ans_gcs(a, b):
     return ans
 
 
-def gcs(a, b):
+def lcs(a, b):
     n, m = len(a), len(b)
     ans = ans_gcs(a, b)
     x = ans[n][m]
@@ -207,4 +207,4 @@ def gcs(a, b):
 
 
 if __name__ == '__main__':
-    print(gcs("abd", "bcd"))
+    print(lcs("abd", "bcd"))

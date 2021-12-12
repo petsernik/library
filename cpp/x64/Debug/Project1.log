@@ -1,6 +1,5 @@
-﻿  MergeSort.cpp
-  SegmentTree.cpp
-  TchOperations.cpp
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: промежуточный каталог (x64\Debug\) содержит файлы, которые используются совместно с другим проектом (Project1.vcxproj).  Это может привести к ошибкам очистки и перестроения.
   main.cpp
-  Создание кода...
-  Project1.vcxproj -> C:\Files\Github\library\cpp\x64\Debug\Project1.exe
+C:\Files\Github\library\cpp\TchOperations.h(51,9): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Files\Github\library\cpp\main.cpp(140): warning C4717: add: рекурсия на всех путях выполнения, функция вызовет переполнение стека
+  Project1.vcxproj -> C:\Files\Github\library\cpp\x64\Debug\library.exe

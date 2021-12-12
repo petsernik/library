@@ -1,10 +1,8 @@
-#include "Std.h"
+#include <vector>
 
 template <typename T>
 void merge(vector<T>& a, vector<T>& b, vector<T>& v) {
-	auto it1 = a.begin();
-	auto it2 = b.begin();
-	auto it = v.begin();
+	auto it1 = a.begin(), it2 = b.begin(), it = v.begin();
 	while (it != v.end()) {
 		if (it2 == b.end() || (it1 != a.end() && *it1 <= *it2))
 			*(it++) = *(it1++);
