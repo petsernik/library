@@ -1,7 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: промежуточный каталог (x64\Release\) содержит файлы, которые используются совместно с другим проектом (Project1.vcxproj).  Это может привести к ошибкам очистки и перестроения.
-  ICPC.cpp
-  Создание кода
-  Создание кода завершено
-  Previous IPDB not found, fall back to full compilation.
-  All 153 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Project1.vcxproj -> C:\Files\Github\library\cpp\x64\Release\library.exe

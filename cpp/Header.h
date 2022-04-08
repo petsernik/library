@@ -9,33 +9,36 @@
 #include <queue>
 #include <deque>
 #include <cmath>
-#define all(x) (x).begin(), (x).end()
-#define vcin(a) for (auto& e : a) cin >> e;
-#define vcout(a) for (auto& e : a) cout << e << " ";
+#include <ctime>
+#include <random>
 using namespace std;
 
-typedef long long ll;
-typedef unsigned long long ull;
-typedef long double ld;
-const ll inf = (ll)1e18;
-const ll mod = 998244353;
-
-void solution() {
+void codeforces_solution() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(0);
 	cout.tie(0);
-	ll T; cin >> T;
+	int T; cin >> T;
 	while (T--) {
+		int n; cin >> n;
 
 	}
 }
 
-ll gcd(ll x, ll y)
-{
-	while (y)
-	{
+ull gcd(ull x, ull y) {
+	while (y) {
 		x %= y;
 		swap(x, y);
 	}
 	return x;
+}
+
+ull powmod(ull base, ull exp, int modulus) {
+	base %= modulus;
+	ull result = 1 % modulus;
+	while (exp) {
+		if (exp & 1) result = (result * base) % modulus;
+		base = (base * base) % modulus;
+		exp >>= 1;
+	}
+	return result;
 }

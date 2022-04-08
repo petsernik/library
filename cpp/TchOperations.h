@@ -48,7 +48,7 @@ T lcd(T x, T y)
 
 int prime_divisor(int x)
 {
-	int sq = sqrt(x) + 0.5;
+	int sq = (int)(sqrt(x) + 0.5);
 	for (int i = 2; i <= sq; ++i)
 		if (x % i == 0)
 			return i;

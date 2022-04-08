@@ -21,7 +21,12 @@
 #include "LCS.h"
 #include "MergeSort.h"
 #include "SegmentTree.h"
+#include "MassSegmentTree.h"
 #include "TchOperations.h"
+#include "Header.h"
+#include "Treap.h"
+#include "QuickSort_and_KthElement.h"
+#include <cassert> // assert
 
 //cstdlib,time
 void init_rand() {
@@ -38,7 +43,7 @@ int randint(int x, int y) {
 
 
 // checking for prime
-// p(fp)=1/4
+// probability(false-positive)=1/4
 // complexity: O(log(n))
 bool miller_rabin(int n)
 {
@@ -84,33 +89,6 @@ bool comp(int& lhs, int& rhs)
 	return lhs > rhs;
 }
 
-template <typename T>
-void quicksort(int a, int b, vector<T>& x) {
-	if (b - a >= 2) {
-		int i = partition(a, b, x);
-		quicksort(a, i, x);
-		quicksort(i + 1, b, x);
-	}
-}
-
-template <typename T>
-int partition(int a, int b, vector<T>& x) {
-	int p = randint(a, b - 1);
-	T y = x[p];
-	swap(x[p], x[b - 1]);
-	int i = a, j = b - 1;
-	while (i < j) {
-		if (x[i] < y)
-			++i;
-		else if (x[j] >= y)
-			--j;
-		else
-			swap(x[i], x[j]);
-	}
-	swap(x[i], x[b - 1]);
-	return i;
-}
-
 
 
 #include <ctime>
@@ -124,43 +102,46 @@ void time_of_work() {
 	}
 }
 
-void test_st() {
-	int n = 4;
-	int v = 1, tl = 0, tr = n - 1;
-	vector<seg_t> a{ 1,6,4,2 };
-	build(a, v, tl, tr);
-	cout << get(v, tl, tr, 1, 3) << '\n';
-	update(v, tl, tr, 3, 12);
-	cout << get(v, tl, tr, 0, 3) << '\n';
+void Test_SegmentTree() {
+	vector<ll> a{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+	SegmentTree st(a);
+	cout << st.query(0, 15).x << "\n";
+	st.update(3, 0);
+	cout << st.query(15, 15).x << "\n";
 }
 
-void add(int& i) {
-	cout << i << "\n";
-	add(++i);
+void Test_MassSegmentTree() {
+	//cout << "test massive segment tree\n";
+	vector<ll> a{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+	MassSegmentTree st(a);
+	cout << st.query(0, 15).sum << "\n";
+	st.change(0, 15, 1);
+	cout << st.query(0, 15).sum << "\n";
+	st.change(2, 5, 0);
+	cout << st.query(0, 15).sum << "\n";
+	st.add(3, 6, 2);
+	cout << st.query(15, 15).sum << "\n";
+	//cout << "\n";
 }
 
+void Test_Treap() {
+	Treap* tr = {};
+	tr = tr->insert(2);
+	cout << *tr;
+}
+
+void Test_Kth() {
+	//cout << "test k-th element selecting\n";
+	vector<ll> a((int)1e6);
+	for (int i = 0; i < 1e6; ++i) {
+		a[i] = mt() % (int)23;
+	}
+	cout << quickselect(0, (int)a.size(), 27, a) << "\n";
+	//cout << "\n";
+}
 
 int main()
 {
-	cout << lcs("abcd", "bcde") << endl;
-	cout << lcs_Hirshberg("abcd", "bcde") << endl;
-	/*vector<int> g(1000000 + 1);
-	g[0] = 0;
-	int n = 239; int x = 0;
-	for (int i = 1; i <= n; ++i)
-	{
-		set<int> s;
-		int mex = 0;
-		for (int j = 1; j <= i - 1; ++j) {
-			s.insert(g[j - 1] ^ g[i - j - 1]);
-		}
-		while (s.count(mex))
-			++mex;
-		g[i] = mex;
-		if (g[i] == 0) {
-			cout << i << ": " << g[i] << " " << i - x << endl;
-			x = i;
-		}
-	}*/
-	//for (int i=0; i<)
+	Test_Kth();
+	Test_MassSegmentTree();
 }
