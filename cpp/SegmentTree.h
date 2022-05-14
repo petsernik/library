@@ -1,64 +1,107 @@
+#pragma once
 #include "Std.h"
-// SegmentTree st(v); v is a vector;
+
 struct SegmentTree {
 private:
 	struct Node {
-		ll x;
+	private:
+		ll inheritance, type;
+	public:
+		ll sum;
+		Node(ll x = 0) : sum(x), inheritance(0), type(0) {}
+		// merge nodes
+		friend Node operator+(const Node& a, const Node& b) {
+			return Node(a.sum + b.sum);
+		}
+		// operation "+" in node
+		void add(ll x, ll l, ll r) {
+			sum += (r - l) * x;
+			inheritance += x;
+		}
+		// operation "=" in node
+		void change(ll x, ll l, ll r) {
+			sum = (r - l) * x;
+			inheritance = x;
+			type = 1; // indicator
+		}
+		// get changes from parent
+		void get(const Node& a, ll l, ll r) {
+			if (a.type == 0) add(a.inheritance, l, r);
+			else change(a.inheritance, l, r);
+		}
 	};
-	Node merge(const Node& a, const Node& b) {
-		return Node{ a.x + b.x };
-	}
 	vector<Node> tree;
-	size_t n;
+	ll n;
 public:
+	// initialization
 	template<typename T>
 	SegmentTree(const vector<T>& a) {
-		n = a.size();
+		n = (ll)a.size();
 		tree.resize(4 * n + 1);
 		build(1, 0, n, a);
 	}
-	Node query(size_t l, size_t r) {
-		return query(1, 0, n, l, r+1);
+	// operation "+" on [l,r]
+	template<typename T>
+	void add(ll l, ll r, T x) {
+		add(1, 0, n, l, r + 1, x);
 	}
-	template <typename T>
-	void update(size_t pos, T new_val) {
-		update(1, 0, n, pos, new_val);
+	// operation "=" on [l,r]
+	template<typename T>
+	void change(ll l, ll r, T x) {
+		change(1, 0, n, l, r + 1, x);
+	}
+	// get sum on [l,r]
+	Node query(ll l, ll r) {
+		return query(1, 0, n, l, r + 1);
 	}
 private:
 	template<typename T>
-	void build(size_t v, size_t tl, size_t tr, const vector<T>& a) {
-		if (tl == tr-1)
-			tree[v] = Node{ a[tl] };
-		else {
-			size_t tm = (tl + tr) / 2;
-			build(2 * v, tl, tm, a);
-			build(2 * v + 1, tm, tr, a);
-			tree[v] = merge(tree[2 * v], tree[2 * v + 1]);
+	void build(ll v, ll l, ll r, const vector<T>& a) {
+		if (r - l == 1) {
+			tree[v] = Node(a[l]);
+			return;
 		}
+		ll m = (l + r) / 2;
+		build(2 * v + 0, l, m, a);
+		build(2 * v + 1, m, r, a);
+		tree[v] = tree[2 * v] + tree[2 * v + 1];
 	}
-
-	Node query(size_t v, size_t tl, size_t tr, size_t l, size_t r) {
-		if (l == tl && r == tr) return tree[v];
-		size_t tm = (tl + tr) / 2;
-		if (l >= tm) return query(2 * v + 1, tm, tr, l, r);
-		if (tm >= r) return query(2 * v, tl, tm, l, r);
-		return merge(
-			query(2 * v, tl, tm, l, tm),
-			query(2 * v + 1, tm, tr, tm, r)
-		);
+	void push(ll v, ll l, ll r) {
+		ll m = (l + r) / 2;
+		tree[2 * v + 0].get(tree[v], l, m);
+		tree[2 * v + 1].get(tree[v], m, r);
 	}
-
-	template <typename T>
-	void update(size_t v, size_t tl, size_t tr, size_t pos, const T& new_val) {
-		if (tl == tr-1)
-			tree[v] = Node{ new_val };
-		else {
-			size_t tm = (tl + tr) / 2;
-			if (pos < tm)
-				update(2 * v, tl, tm, pos, new_val);
-			else
-				update(2 * v + 1, tm, tr, pos, new_val);
-			tree[v] = merge(tree[2 * v], tree[2 * v + 1]);
+	template<typename T>
+	void add(ll v, ll l, ll r, ll ql, ll qr, T x) {
+		if (qr <= l || r <= ql) return;
+		if (ql <= l && r <= qr) {
+			tree[v].add(x, l, r);
+			return;
 		}
+		ll m = (l + r) / 2;
+		push(v, l, r);
+		add(2 * v + 0, l, m, ql, qr, x);
+		add(2 * v + 1, m, r, ql, qr, x);
+		tree[v] = tree[2 * v] + tree[2 * v + 1];
+	}
+	template<typename T>
+	void change(ll v, ll l, ll r, ll ql, ll qr, T x) {
+		if (qr <= l || r <= ql) return;
+		if (ql <= l && r <= qr) {
+			tree[v].change(x, l, r);
+			return;
+		}
+		ll m = (l + r) / 2;
+		push(v, l, r);
+		change(2 * v + 0, l, m, ql, qr, x);
+		change(2 * v + 1, m, r, ql, qr, x);
+		tree[v] = tree[2 * v] + tree[2 * v + 1];
+	}
+	Node query(ll v, ll l, ll r, ll ql, ll qr) {
+		if (qr <= l || r <= ql) return Node();
+		if (ql <= l && r <= qr) return tree[v];
+		ll m = (l + r) / 2;
+		push(v, l, r);
+		return query(2 * v, l, m, ql, qr) + query(2 * v + 1, m, r, ql, qr);
 	}
 };

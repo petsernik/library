@@ -21,7 +21,6 @@
 #include "LCS.h"
 #include "MergeSort.h"
 #include "SegmentTree.h"
-#include "MassSegmentTree.h"
 #include "TchOperations.h"
 #include "Header.h"
 #include "Treap.h"
@@ -103,17 +102,9 @@ void time_of_work() {
 }
 
 void Test_SegmentTree() {
-	vector<ll> a{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-	SegmentTree st(a);
-	cout << st.query(0, 15).x << "\n";
-	st.update(3, 0);
-	cout << st.query(15, 15).x << "\n";
-}
-
-void Test_MassSegmentTree() {
 	//cout << "test massive segment tree\n";
 	vector<ll> a{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-	MassSegmentTree st(a);
+	SegmentTree st(a);
 	cout << st.query(0, 15).sum << "\n";
 	st.change(0, 15, 1);
 	cout << st.query(0, 15).sum << "\n";
@@ -143,5 +134,5 @@ void Test_Kth() {
 int main()
 {
 	Test_Kth();
-	Test_MassSegmentTree();
+	Test_SegmentTree();
 }

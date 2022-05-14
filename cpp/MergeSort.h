@@ -21,3 +21,27 @@ void merge_sort(vector<T>& v)
 	merge_sort(b);
 	merge(a, b, v);
 }
+
+template <typename T>
+void merge(vector<T>& v, ll l, ll r) {
+	ll m = (l + r) / 2;
+	vector<T> a(v.begin() + l, v.begin() + m);
+	vector<T> b(v.begin() + m, v.begin() + r);
+	ll i = 0, j = 0, k = l;
+	while (k < r) {
+		if (j == b.size() || (i < a.size() && a[i] <= b[j]))
+			v[k++] = a[i++];
+		else
+			v[k++] = b[j++];
+	}
+}
+
+template <typename T>
+void merge_sort(vector<T>& v, ll l, ll r)
+{
+	if (r - l <= 1) return;
+	ll m = (l + r) / 2;
+	merge_sort(v, l, m);
+	merge_sort(v, m, r);
+	merge(v, l, r);
+}

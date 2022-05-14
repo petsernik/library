@@ -144,16 +144,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h" />
-    <ClInclude Include="MergeSort.h" />
     <ClInclude Include="QuickSort_and_KthElement.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MassSegmentTree.h">
+    <ClInclude Include="SegmentTree.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="SegmentTree.h" />
     <ClInclude Include="Std.h" />
     <ClInclude Include="TchOperations.h" />
     <ClInclude Include="Treap.h" />

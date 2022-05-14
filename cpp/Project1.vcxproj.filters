@@ -26,22 +26,16 @@
     <ClInclude Include="Treap.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="SegmentTree.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Std.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="TchOperations.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="MassSegmentTree.h">
+    <ClInclude Include="SegmentTree.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="QuickSort_and_KthElement.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeSort.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
