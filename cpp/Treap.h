@@ -128,6 +128,11 @@ struct Treap {
 		merge(p.first, p.second);
 		return x;
 	}
+    
+    ~Treap() {
+        delete left;
+        delete right;
+    }
 };
 
 ostream& operator <<(ostream& os, const Treap& treap) {
