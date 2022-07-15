@@ -116,9 +116,23 @@ void Test_SegmentTree() {
 }
 
 void Test_Treap() {
-	Treap* tr = {};
-	tr = tr->insert(2);
-	cout << *tr;
+	Treap *t = {};
+	t = t->insert(2);
+	cout << t << "\n";
+	t = t->insert(3);
+	cout << t << "\n";
+	t = t->erase(1);
+	cout << t << "\n";
+	t = t->erase(1);
+	cout << t << "\n";
+	//for (int j = 0; j < 100; ++j) {
+	//	Treap *t = {};
+	//	for (int i = 0; i < 1e2; ++i)
+	//		t = t->insert(i);
+	//	for (int i = 0; i < 1e2; ++i)
+	//		t = t->erase(i);
+	//	//t->del();
+	//}
 }
 
 void Test_Kth() {
@@ -133,6 +147,5 @@ void Test_Kth() {
 
 int main()
 {
-	Test_Kth();
-	Test_SegmentTree();
+	Test_Treap();
 }
