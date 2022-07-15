@@ -149,7 +149,6 @@ struct Treap {
     }
 };
 
-
 ostream &operator <<(ostream &os, const Treap::Node *node) {
     if (node) {
         os << node->left;
