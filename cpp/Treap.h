@@ -107,18 +107,18 @@ struct Treap {
             Node *cur = p.second;
             if (cur) {
                 if (!cur->left) {
-                    Node *t = cur->right;
+                    Node *res = merge(p.first, cur->right);
                     delete cur;
-                    return merge(p.first, t);
+                    return res;
                 }
                 while (cur->left->left) {
                     --cur->size;
                     cur = cur->left;
                 }
                 --cur->size;
-                Node *new_left = cur->left->right;
-                delete cur->left;
-                cur->left = new_left;
+                Node *t = cur->left;
+                cur->left = t->right;
+                delete t;
             }
             return merge(p.first, p.second);
         }
