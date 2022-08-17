@@ -55,6 +55,7 @@ void Test_SegmentTree() {
 void Test_Treap() {
     for (int i = 0; i < 1; ++i) {
         Treap<ll> t;
+        t.insert(2);
         for (int j = 0; j < 50; ++j)
             t.insert(j);
         cout << t << "\n";

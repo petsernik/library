@@ -97,14 +97,14 @@ struct Treap {
             return right ? right->size : 0;
         }
 
-        Node *insert(T x) {
+        Node *insert(const T &x) {
             Node *k = new Node(x);
             auto p = split(this, x);
             p.first = merge(p.first, k);
             return merge(p.first, p.second);
         }
 
-        Node *erase(T x) {
+        Node *erase(const T &x) {
             if (key < x)
                 right = right ? right->erase(x) : nullptr;
             else if (key > x)
@@ -118,7 +118,7 @@ struct Treap {
             return this;
         }
 
-        Node *find(T x) {
+        Node *find(const T &x) {
             Node *cur = this;
             while (cur)
                 if (cur->key < x)
@@ -130,7 +130,7 @@ struct Treap {
             return nullptr;
         }
 
-        Node *lower_bound(T x) {
+        Node *lower_bound(const T &x) {
             Node *cur = this, *res = nullptr;
             while (cur)
                 if (cur->key < x)
@@ -142,7 +142,7 @@ struct Treap {
             return res;
         }
 
-        Node *upper_bound(T x) {
+        Node *upper_bound(const T &x) {
             Node *cur = this, *res = nullptr;
             while (cur)
                 if (cur->key <= x)
@@ -164,13 +164,13 @@ struct Treap {
     Node *min() { return head ? head->min() : nullptr; }
     Node *max() { return head ? head->max() : nullptr; }
     ll size() { return head ? head->size : 0; }
-    void insert(T x) { head = head ? head->insert(x) : new Node(x); }
-    void erase(T x) { head = head ? head->erase(x) : nullptr; }
-    Node *find(T x) { return head ? head->find(x) : nullptr; }
-    Node *lower_bound(T x) { return head ? head->lower_bound(x) : nullptr; }
+    void insert(const T &x) { head = head ? head->insert(x) : new Node(x); }
+    void erase(const T &x) { head = head ? head->erase(x) : nullptr; }
+    Node *find(const T &x) { return head ? head->find(x) : nullptr; }
+    Node *lower_bound(const T &x) { return head ? head->lower_bound(x) : nullptr; }
 
-    pair<Node *, Node *> split(T x) { return Node::split(head, x); }
-    pair<Node *, Node *> split_size(ll k) { return Node::split_size(head, k); }
+    pair<Node *, Node *> split(const T &x) { return Node::split(head, x); }
+    pair<Node *, Node *> split_size(const ll &k) { return Node::split_size(head, k); }
     void merge(Node *a, Node *b) { head = Node::merge(a, b); }
 
     ~Treap() { if (head) head->clear(); }
