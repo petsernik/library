@@ -1,94 +1,31 @@
 // precedence and associativity
 // upper then earlier
 // 
-// ::
-// .  ->   []   ()  a++ a-- typeid const_cast dynamic_cast reinterpret_cast static_cast
-// sizeof ++a  --a  ~a  !a  -a  +a  &a  *a  new  delete  (cast)a
-// .*  ->*
-// *  /  %
-// + -
-// << >>
-// < > <= >=
-// == !=
-// &
-// ^
-// |
-// &&
-// ||
-// a?b:c  =  *= /= %= += -= <<= >>= &= |= ^= throw 
-// ,
+// ::                                                                                         LR
+// .  ->   []   ()  a++ a-- typeid const_cast dynamic_cast reinterpret_cast static_cast       LR
+// sizeof ++a  --a  ~a  !a  -a  +a  &a  *a  new  delete  (cast)a                              RL
+// .*  ->*                                                                                    LR
+// *  /  %                                                                                    LR
+// + -                                                                                        LR
+// << >>                                                                                      LR
+// < > <= >=                                                                                  LR
+// == !=                                                                                      LR
+// &                                                                                          LR
+// ^                                                                                          LR
+// |                                                                                          LR
+// &&                                                                                         LR
+// ||                                                                                         LR
+// a?b:c  =  *= /= %= += -= <<= >>= &= |= ^= throw                                            RL
+// ,                                                                                          LR
 #include "Std.h"
 #include "LCS.h"
 #include "MergeSort.h"
 #include "SegmentTree.h"
-#include "TchOperations.h"
-#include "Header.h"
+#include "NumberTheory.h"
 #include "Treap.h"
 #include "QuickSort_and_KthElement.h"
+#include "MillerRabin.h"
 #include <cassert> // assert
-
-//cstdlib,time
-void init_rand() {
-    srand((unsigned int)time(0));
-}
-
-long long randint(long long x, long long y) {
-    return (rand() + (INT_MAX + 1LL) * rand()) % (y - x + 1) + x;
-}
-
-int randint(int x, int y) {
-    return rand() % (y - x + 1) + x;
-}
-
-
-// checking for prime
-// probability(false-positive)=1/4
-// complexity: O(log(n))
-bool miller_rabin(int n)
-{
-    if (n <= 1)
-        return false;
-    if (n <= 3)
-        return true;
-    if (n % 2 == 0)
-        return false;
-    long long u = n - 1;
-    int t = 0;
-    while (u % 2 == 0)
-    {
-        u /= 2;
-        ++t;
-    }
-    long long a = randint(2, n - 2);
-    long long x = powmod(a, u, n);
-    if (x == n - 1 || x == 1)
-        return true;
-    for (int i = 0; i < t - 1; ++i)
-    {
-        x = (x * x) % n;
-        if (x == n - 1)
-            return true;
-        if (x == 1)
-            return false;
-    }
-    return false;
-}
-
-// comporator
-// lexicographical_compare
-struct map_comp {
-    bool operator() (const string &lhs, const string &rhs) const
-    {
-        return lhs.length() < rhs.length() || (lhs.length() == rhs.length() && lhs < rhs);
-    }
-};
-
-bool comp(int &lhs, int &rhs)
-{
-    return lhs > rhs;
-}
-
-
 
 #include <ctime>
 void time_of_work() {
@@ -117,16 +54,16 @@ void Test_SegmentTree() {
 
 void Test_Treap() {
     for (int i = 0; i < 1; ++i) {
-        Treap t;
+        Treap<ll> t;
         for (int j = 0; j < 50; ++j)
             t.insert(j);
-        //cout << t << "\n";
-        for (int j = 0; j < 36; ++j)
+        cout << t << "\n";
+        for (int j = 0; j < 21; ++j)
             t.erase(j);
         cout << t << "\n";
         t.insert(1);
-        cout << t << "\n";
-        cout << t.find(5) << "\n";
+        cout << " find " << t.find(1) << "\n";
+        cout << " find " << t.find(21) << "\n";
     }
 }
 
@@ -142,5 +79,8 @@ void Test_Kth() {
 
 int main()
 {
+    setlocale(LC_ALL, "Russian");
+    //int k = 0;
+    //cout << k << "\n", ++k;
     Test_Treap();
 }

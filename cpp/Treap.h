@@ -1,135 +1,157 @@
-#pragma once
+﻿#pragma once
 #include "Std.h"
+template <typename T>
 struct Treap {
     struct Node {
-        ll key, prior, size;
         // for all k1 from left, k2 from right: k1<k<=k2; 
         // for all p1 from left or right:       p1<=p; 
+        T key; ll prior;
+        T sum; ll size;
         Node
             *left = nullptr,
             *right = nullptr;
 
-        // first keys less than k, second keys at least k
-        pair<Node *, Node *> split(Node *node, const ll &k) {
+        operator T() const { return key; }
+
+        Node(T x) : key(x), prior(mt()), size(1), sum(x) {}
+
+        static void update(Node *t) {
+            if (t) {
+                t->size = 1 + t->left_size() + t->right_size();
+
+                //t->sum =
+                //    t->key +
+                //    (t->left ? t->left->sum : 0) +
+                //    (t->right ? t->right->sum : 0);
+            }
+        }
+
+        // first keys less than k, second keys at least x
+        static pair<Node *, Node *> split(Node *node, const T &x) {
             if (!node) return { nullptr, nullptr };
-            if (node->key < k) {
-                pair<Node *, Node *> p = split(node->right, k);
+            if (node->key < x) {
+                auto p = split(node->right, x);
                 node->right = p.first;
-                upd_size(node);
+                update(node);
                 return { node, p.second };
             }
             else {
-                pair<Node *, Node *> p = split(node->left, k);
+                auto p = split(node->left, x);
                 node->left = p.second;
-                upd_size(node);
+                update(node);
                 return { p.first, node };
             }
         }
 
         // second tree has k vertices
-        pair<Node *, Node *> split_size(Node *node, const ll &k) {
+        static pair<Node *, Node *> split_size(Node *node, const ll &k) {
             if (!node) return { nullptr, nullptr };
             if (node->right_size() >= k) {
-                pair<Node *, Node *> p = split_size(node->right, k);
+                auto p = split_size(node->right, k);
                 node->right = p.first;
-                upd_size(node);
+                update(node);
                 return { node, p.second };
             }
             else {
-                pair<Node *, Node *> p = split_size(node->left, k - 1 - node->right_size());
+                auto p = split_size(node->left, k - 1 - node->right_size());
                 node->left = p.second;
-                upd_size(node);
+                update(node);
                 return { p.first, node };
             }
         }
 
         // first keys must be less than second keys
-        Node *merge(Node *t1, Node *t2) {
+        static Node *merge(Node *t1, Node *t2) {
             if (!t1 || !t2) return t1 ? t1 : t2;
             if (t1->prior >= t2->prior) {
                 t1->right = merge(t1->right, t2);
-                upd_size(t1);
+                update(t1);
                 return t1;
             }
             else {
                 t2->left = merge(t1, t2->left);
-                upd_size(t2);
+                update(t2);
                 return t2;
             }
         }
 
-        // t->min();
-        ll min() {
+        Node *min() {
             Node *t = this;
             while (t->left)
                 t = t->left;
-            return t->key;
+            return t;
         }
 
-        //t->max();
-        ll max() {
+        Node *max() {
             Node *t = this;
             while (t->right)
                 t = t->right;
-            return t->key;
+            return t;
         }
 
-        int left_size() {
+        ll left_size() {
             return left ? left->size : 0;
         }
 
-        int right_size() {
+        ll right_size() {
             return right ? right->size : 0;
         }
 
-        void upd_size(Node *t) {
-            if (t)
-                t->size = 1 +
-                t->left_size() +
-                t->right_size();
-        }
-
-
-        // t = t->insert(x);
-        template <typename T>
         Node *insert(T x) {
-            Node *k = new Node{ x, mt() };
-            pair<Node *, Node *> p = split(this, k->key);
+            Node *k = new Node(x);
+            auto p = split(this, x);
             p.first = merge(p.first, k);
             return merge(p.first, p.second);
         }
 
-        // t = t->erase(x);
-        // erase first >= x
-        template <typename T>
-        Node *erase(const T &x) {
-            pair<Node *, Node *> p = split(this, x);
-            Node *cur = p.second;
-            if (cur) {
-                if (!cur->left) {
-                    Node *res = merge(p.first, cur->right);
-                    delete cur;
-                    return res;
-                }
-                while (cur->left->left) {
-                    --cur->size;
-                    cur = cur->left;
-                }
-                --cur->size;
-                Node *t = cur->left;
-                cur->left = t->right;
-                delete t;
+        Node *erase(T x) {
+            if (key < x)
+                right = right ? right->erase(x) : nullptr;
+            else if (key > x)
+                left = left ? left->erase(x) : nullptr;
+            else {
+                Node *res = merge(left, right);
+                delete this;
+                return res;
             }
-            return merge(p.first, p.second);
+            update(this);
+            return this;
         }
 
-        // t->find(k);
-        // find first >= k
-        ll find(int k) {
-            pair<Node *, Node *> p = split(this, k);
-            ll x = p.second ? p.second->min() : -inf;
-            merge(p.first, p.second);
-            return x;
+        Node *find(T x) {
+            Node *cur = this;
+            while (cur)
+                if (cur->key < x)
+                    cur = cur->right;
+                else if (cur->key > x)
+                    cur = cur->left;
+                else
+                    return cur;
+            return nullptr;
+        }
+
+        Node *lower_bound(T x) {
+            Node *cur = this, *res = nullptr;
+            while (cur)
+                if (cur->key < x)
+                    cur = cur->right;
+                else {
+                    res = cur;
+                    cur = cur->left;
+                }
+            return res;
+        }
+
+        Node *upper_bound(T x) {
+            Node *cur = this, *res = nullptr;
+            while (cur)
+                if (cur->key <= x)
+                    cur = cur->right;
+                else {
+                    res = cur;
+                    cur = cur->left;
+                }
+            return res;
         }
 
         void clear() {
@@ -138,19 +160,25 @@ struct Treap {
             delete this;
         }
     };
-    Node *head = {};
-    ll min() { return head->min(); }
-    ll max() { return head->max(); }
-    void insert(ll x) { head = head->insert(x); }
-    void erase(ll x) { head = head->erase(x); }
-    ll find(ll x) { return head->find(x); }
-    ~Treap() {
-        head->clear();
-    }
+    Node *head = nullptr;
+    Node *min() { return head ? head->min() : nullptr; }
+    Node *max() { return head ? head->max() : nullptr; }
+    ll size() { return head ? head->size : 0; }
+    void insert(T x) { head = head ? head->insert(x) : new Node(x); }
+    void erase(T x) { head = head ? head->erase(x) : nullptr; }
+    Node *find(T x) { return head ? head->find(x) : nullptr; }
+    Node *lower_bound(T x) { return head ? head->lower_bound(x) : nullptr; }
+
+    pair<Node *, Node *> split(T x) { return Node::split(head, x); }
+    pair<Node *, Node *> split_size(ll k) { return Node::split_size(head, k); }
+    void merge(Node *a, Node *b) { head = Node::merge(a, b); }
+
+    ~Treap() { if (head) head->clear(); }
 };
 
 
-ostream &operator <<(ostream &os, const Treap::Node *node) {
+template<class T>
+ostream &operator <<(ostream &os, const struct Treap<T>::Node *node) {
     if (node) {
         os << node->left;
         os << "(" << node->key << ", " << node->prior << ")\n";
@@ -159,6 +187,7 @@ ostream &operator <<(ostream &os, const Treap::Node *node) {
     return os;
 }
 
-ostream &operator <<(ostream &os, const Treap &treap) {
+template <typename T>
+ostream &operator <<(ostream &os, const Treap<T> &treap) {
     return os << treap.head;
 }

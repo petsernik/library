@@ -1,9 +1,9 @@
 #pragma once
 #include "Std.h"
-// T(n) = n + O(1)
+// T(n) = n + o(1)
 template <typename T>
 int partition(int a, int b, vector<T>& x) {
-	int p = rand() % (b - a) + a; // [a, b)
+	int p = mt() % (b - a) + a; // [a, b)
 	T y = x[p];
 	swap(x[p], x[b - 1]);
 	int i = a, j = b - 1;
@@ -16,7 +16,7 @@ int partition(int a, int b, vector<T>& x) {
 	return i;
 }
 
-// E(T(n)) = nlogn + O(logn)
+// E(T(n)) = nlogn + o(logn)
 template <typename T>
 void quicksort(int a, int b, vector<T>& x) {
 	if (b - a >= 2) { // [a, b)
@@ -27,7 +27,7 @@ void quicksort(int a, int b, vector<T>& x) {
 }
 
 // K-th element from the begin after sorting
-// E(T(n)) = 2n + O(logn)
+// E(T(n)) = 2n + o(logn)
 template <typename T>
 T quickselect(int a, int b, int k, vector<T>& x) {
 	int p = partition(a, b, x);
@@ -36,11 +36,11 @@ T quickselect(int a, int b, int k, vector<T>& x) {
 	else return quickselect(p + 1, b, k, x);
 }
 
-// T(n) = 3*n + O(1)
+// T(n) = 3n + o(1)
 template <typename T>
 auto partition(T y, vector<T>& x) {
 	int a = 0, b = (int)x.size(), p;
-	for (int i = 0; i < b; ++i)
+	for (int i = a; i < b; ++i)
 		if (x[i] == y) {
 			p = i;
 			break;
