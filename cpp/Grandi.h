@@ -1,6 +1,5 @@
 #pragma once
 #include<vector>
-#include<set>
 #include<iostream>
 using namespace std;
 
@@ -10,12 +9,11 @@ int grandi() {
 	int n = 239; int x = 0;
 	for (int i = 1; i <= n; ++i)
 	{
-		set<int> s;
-		int mex = 0;
-		for (int j = 1; j <= i - 1; ++j) {
-			s.insert(g[j - 1] ^ g[i - j - 1]);
-		}
-		while (s.count(mex))
+		vector<int> f(i+1);
+		for (int j = 1; j <= i - 1; ++j)
+			f[g[j - 1] ^ g[i - j - 1]] = 1;
+        int mex = 0;
+		while (f[mex])
 			++mex;
 		g[i] = mex;
 		if (g[i] == 0) {
