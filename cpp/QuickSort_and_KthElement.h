@@ -68,23 +68,24 @@ auto partition(T y, vector<T>& x) {
 template <typename T>
 T select(int k, vector<T>& x) {
 	int n = (int)x.size();
-	if (n <= 101) {
+	int C = 101;
+	if (n <= C) {
 		sort(x.begin(), x.end());
 		return x[k];
 	}
 	vector<T> y;
 	for (auto it = x.begin(); it != x.end(); ) {
 		vector<T> z;
-		int i = 101;
+		int i = C;
 		while (i-- && it != x.end()) {
 			z.push_back(*it);
 			++it;
 		}
 		sort(z.begin(), z.end());
-		y.push_back(*(z.begin() + z.size() / 2));
+		y.push_back(*(z.begin() + (z.size() >> 1)));
 	}
 	int s = (int)y.size();
-	T ym = select(s / 2, y);
+	T ym = select(s >> 1, y);
 	auto p = partition(ym, x);
 	if (p[0] <= k && k <= p[1]) return ym;
 	else if (p[0] > k) {
