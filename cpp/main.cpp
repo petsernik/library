@@ -38,18 +38,42 @@ void time_of_work() {
     }
 }
 
+void st_correct_add(ll i, ll j, ll x, vec<ll> &a) {
+    for (ll m = i; m <= min(j, a.size() - 1); ++m)
+        a[m] += x;
+}
+
+ll st_correct_query(ll i, ll j, vec<ll> &a) {
+    ll sum{};
+    for (ll m = i; m <= j; ++m)
+        sum += a[m];
+    return sum;
+}
+
+void mst_correct_change(ll i, ll j, ll x, vec<ll> &a) {
+    for (ll m = i; m <= j; ++m)
+        a[m] = x;
+}
+
 void Test_SegmentTree() {
-    //cout << "test massive segment tree\n";
+    //cout << "test segment tree\n";
     vector<ll> a{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-    SegmentTree st(a);
-    cout << st.query(0, 15).sum << "\n";
-    st.change(0, 15, 1);
-    cout << st.query(0, 15).sum << "\n";
-    st.change(2, 5, 0);
-    cout << st.query(0, 15).sum << "\n";
-    st.add(3, 6, 2);
-    cout << st.query(15, 15).sum << "\n";
-    //cout << "\n";
+    ll_segtree st(a);
+    st.add(0, 2, 3);
+    st_correct_add(0, 2, 3, a);
+    bool ok = true;
+    for (ll i = 0; i < 16; ++i)
+        for (ll j = i; j < 16; ++j) {
+            st.add(i >> 1, 20, 5);
+            st.add(i >> 1, 20, 5);
+            st_correct_add(i >> 1, 20, 5, a);
+            st_correct_add(i >> 1, 20, 5, a);
+            ok &= st.query(i, j) == st_correct_query(i, j, a);
+            ok &= st.query(i, j) == st_correct_query(i, j, a);
+        }
+
+    if (ok) print("OK!");
+    else print("Failure!");
 }
 
 void Test_Treap() {
@@ -83,5 +107,6 @@ int main()
     setlocale(LC_ALL, "Russian");
     //int k = 0;
     //cout << k << "\n", ++k;
-    Test_Treap();
+    //Test_Treap();
+    Test_SegmentTree();
 }
